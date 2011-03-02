@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="modelling/IndexMainCpu.java|nl/knaw/huygens/analysis/ri/IndexMainCpu.java" kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/util"/>
+	<classpathentry kind="lib" path="/home/wittek/wrk/java/lucene/lucene-core-3.0.3.jar" sourcepath="/home/wittek/wrk/java/lucene/lucene-3.0.3-src.zip"/>
+	<classpathentry kind="lib" path="/home/wittek/wrk/java/lucene/lucene-demos-3.0.3.jar"/>
+	<classpathentry kind="lib" path="/home/wittek/wrk/java/lucene/contrib/analyzers/common/lucene-analyzers-3.0.3.jar" sourcepath="/home/wittek/wrk/java/lucene/lucene-3.0.3-src.zip"/>
+	<classpathentry kind="lib" path="/home/wittek/wrk/java/lib/guava-r08.jar"/>
+	<classpathentry kind="lib" path="/home/wittek/wrk/java/lib/apache-solr-core-1.4.1.jar"/>
+	<classpathentry kind="lib" path="/home/wittek/wrk/java/lib/semanticvectors-2.2.jar" sourcepath="/home/wittek/wrk/java/lib/semanticvectors-2.2-src.zip"/>
+	<classpathentry kind="lib" path="/home/wittek/wrk/java/lib/opencsv-2.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
