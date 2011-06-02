@@ -7,7 +7,7 @@ import java.io.IOException;
 import util.Utilities;
 
 public class ConvertAnnotatedLabels {
-
+  private static int dummy = 0;
   private static String language = "la";
   private static String dataset = "all-" + language;
   private static String prefix = "output/" + dataset;
