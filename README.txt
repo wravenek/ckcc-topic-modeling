@@ -1,1 +1,1 @@
-﻿This is a repository for topic modeling within the CKCC project.
+This is a repository for topic modeling within the CKCC project.
