@@ -1,9 +1,10 @@
 package nl.knaw.huygens.analysis.lutil;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -15,13 +16,13 @@ public class LuceneIndexer {
 
   public static Logger logger = Logger.getLogger("nl.knaw.huygens.analysis.lutil");
 
-  public static void indexDir(String docDir, String indexDir, Analyzer analyzer) throws InterruptedException {
-    logger.setLevel(Level.WARNING);
+  public static void indexDir(String docDir, String indexDir, Analyzer analyzer, String language) throws InterruptedException {
     try {
       IndexWriter writer = new IndexWriter(FSDirectory.open(new File(indexDir)), analyzer, true, IndexWriter.MaxFieldLength.LIMITED);
       logger.info("Indexing to directory '" + indexDir + "'...");
-      indexDocs(writer, new File(docDir));
+      indexDocs(writer, new File(docDir), language);
       writer.commit();
+      logger.info("Number of documents: " + writer.numDocs());
       logger.info("Optimizing...");
       writer.optimize();
       writer.close();
@@ -32,7 +33,7 @@ public class LuceneIndexer {
 
   }
 
-  static private void indexDocs(IndexWriter writer, File file) throws IOException, InterruptedException {
+  static private void indexDocs(IndexWriter writer, File file, String language) throws IOException, InterruptedException {
     // do not try to index files that cannot be read
     if (file.canRead()) {
       if (file.isDirectory()) {
@@ -40,15 +41,18 @@ public class LuceneIndexer {
         // an IO error could occur
         if (files != null) {
           for (String file2 : files) {
-            indexDocs(writer, new File(file, file2));
+            indexDocs(writer, new File(file, file2), language);
           }
         }
       } else {
-        logger.info("adding " + file);
         try {
-          Document doc = HTMLDocument.Document(file);
-          // Document doc = FileDocument.Document(file);
-          writer.addDocument(doc);
+          BufferedReader br = new BufferedReader(new FileReader(file));
+          if (br.readLine().contains("\"" + language + "\"")) {
+            logger.info("adding " + file);
+            Document doc = HTMLDocument.Document(file);
+            writer.addDocument(doc);
+          }
+
         }
         // at least on windows, some temporary files raise this
         // exception with an "access denied" message

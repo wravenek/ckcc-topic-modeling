@@ -6,9 +6,10 @@ import org.apache.lucene.util.Version;
 public class LuceneIndexerWrapper {
 
   private static String dataset = "";
-  private static String prefix = "data/lucene/" + dataset;
+  private static String language = "la";
+  private static String prefix = "data/lucene/" + dataset + language;
 
   public static void main(String[] args) throws InterruptedException {
-    LuceneIndexer.indexDir("data/" + dataset, prefix + "lucene-index", new StandardAnalyzer(Version.LUCENE_30));
+    LuceneIndexer.indexDir("data/letters" + dataset, prefix, new StandardAnalyzer(Version.LUCENE_30), language);
   }
 }

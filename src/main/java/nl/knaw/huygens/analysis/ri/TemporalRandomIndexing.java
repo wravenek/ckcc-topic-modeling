@@ -26,7 +26,7 @@ public class TemporalRandomIndexing {
       String path = new File(element).getAbsolutePath();
       System.out.println(path);
       Set<String> stopwords = new HashSet<String>(FileUtils.readLines(new File("data/stopwords/stopwords-" + lang + ".csv")));
-      LuceneIndexer.indexDir(path, path + "-index", new DutchAnalyzer(Version.LUCENE_30, stopwords));
+      LuceneIndexer.indexDir(path, path + "-index", new DutchAnalyzer(Version.LUCENE_30, stopwords), lang);
       String period = path.substring(path.length() - 5);
       String prefix = "data/ri/" + author + "-" + lang;
       if (!(new File(prefix).exists())) {
